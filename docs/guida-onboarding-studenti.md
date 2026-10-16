@@ -58,7 +58,7 @@ Ecco i ruoli ufficiali per le prime **4 settimane (8 ore di laboratorio)**:
 Il **Core Developer** di ciascun team (nello Sprint 1: **Pavan, Romaniuk, Merlo, Romagna**) apre il terminale ed esegue:
 
 ```bash
-git clone <URL_DEL_REPOSITORY>
+git clone https://github.com/makiumjs/Progetto_LaCiaccola.git
 cd Progetto_LaCiaccola
 git checkout -b sprint1/team1-storia
 ```

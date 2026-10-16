@@ -3,7 +3,8 @@
 **Istituto Tecnico Industriale Statale (ITIS) — Indirizzo Informatica**  
 **Classe:** 5ITA (14 studenti divisi in 4 Feature Team) — **Materia:** GPOI (Gestione Progetto e Organizzazione d'Impresa)  
 **Anno Scolastico:** 2026/2027 (Termine progetto: Fine Marzo 2027)  
-**Demo Live (GitHub Pages):** `https://<organizzazione-5ita>.github.io/Progetto_LaCiaccola/`
+**Repository GitHub:** [https://github.com/makiumjs/Progetto_LaCiaccola](https://github.com/makiumjs/Progetto_LaCiaccola)  
+**Demo Live (GitHub Pages):** [https://makiumjs.github.io/Progetto_LaCiaccola/](https://makiumjs.github.io/Progetto_LaCiaccola/)
 
 ---
 
