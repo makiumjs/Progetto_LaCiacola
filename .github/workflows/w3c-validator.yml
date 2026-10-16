@@ -1,0 +1,93 @@
+name: Validazione W3C & Controllo Architetturale DoD
+
+on:
+  push:
+    branches: [ "main", "develop", "feature/**", "sprint-**" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  verifica-dod-e-w3c:
+    name: Verifica HTML5 Puro, WCAG e W3C Validator
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repository
+        uses: actions/checkout@v4
+
+      - name: Controllo Tassativo Anti-DIV e Anti-SPAN
+        run: |
+          echo "=== Controllo assenza di tag <div> e <span> nei file HTML ==="
+          if grep -rn -i -E "<(div|span)([[:space:]>]|$)" . --include="*.html"; then
+            echo "::error::VIOLAZIONE DEFINITION OF DONE: Trovati tag <div> o <span> non semantici nei file HTML!"
+            exit 1
+          fi
+          echo "OK: Zero tag <div> e <span> rilevati."
+
+      - name: Controllo Assenza Lorem Ipsum
+        run: |
+          echo "=== Controllo assenza di testo segnaposto (lorem ipsum) ==="
+          if grep -rn -i "lorem ipsum" . --include="*.html"; then
+            echo "::error::VIOLAZIONE CONTENUTI: Trovato testo 'lorem ipsum' nei file HTML!"
+            exit 1
+          fi
+          echo "OK: Nessun testo 'lorem ipsum' presente."
+
+      - name: Controllo Nomenclatura Asset Grafici (kebab-case minuscolo)
+        run: |
+          echo "=== Verifica file nella cartella img/ ==="
+          for file in img/*; do
+            filename=$(basename "$file")
+            if ! [[ "$filename" =~ ^[a-z0-9]+(-[a-z0-9]+)*\.(jpg|jpeg|png|webp|svg)$ ]]; then
+              echo "::error file=$file::Il file '$filename' in img/ non rispetta il formato kebab-case minuscolo!"
+              exit 1
+            fi
+          done
+          echo "OK: Tutti i file in img/ rispettano la convenzione kebab-case minuscola."
+
+      - name: Controllo Skip-Link, Nav Unificata e Gerarchia Titoli (h1-h2-h3)
+        run: |
+          python3 - << 'EOF'
+          import glob, re, sys
+          from html.parser import HTMLParser
+
+          expected_pages = ["index.html", "storia.html", "musei.html", "eventi.html", "mobilita.html"]
+          for page in expected_pages:
+              try:
+                  with open(page, "r", encoding="utf-8") as f:
+                      content = f.read()
+              except FileNotFoundError:
+                  print(f"::error::File obbligatorio mancante: {page}")
+                  sys.exit(1)
+
+              if 'class="salto-contenuto"' not in content or 'href="#contenuto-principale"' not in content:
+                  print(f"::error file={page}::Skip-link obbligatorio mancante o non conforme in {page}")
+                  sys.exit(1)
+
+              if 'id="contenuto-principale"' not in content:
+                  print(f"::error file={page}::Attributo id='contenuto-principale' su <main> mancante in {page}")
+                  sys.exit(1)
+
+              if '<nav aria-label="Navigazione principale">' not in content:
+                  print(f"::error file={page}::Blocco <nav aria-label='Navigazione principale'> mancante in {page}")
+                  sys.exit(1)
+
+              headings = [int(m.group(1)) for m in re.finditer(r"<h([1-6])\b", content, re.I)]
+              h1_count = headings.count(1)
+              if h1_count != 1:
+                  print(f"::error file={page}::Trovati {h1_count} tag <h1> in {page} (deve essercene esattamente 1)")
+                  sys.exit(1)
+
+              for prev, curr in zip(headings, headings[1:]):
+                  if curr > prev + 1:
+                      print(f"::error file={page}::Salto di livello nei titoli in {page}: da <h{prev}> a <h{curr}>")
+                      sys.exit(1)
+
+          print("OK: Skip-link, <main>, <nav> unificata e gerarchia titoli h1-h2-h3 verificati su tutte le 5 pagine.")
+          EOF
+
+      - name: Validazione W3C Nu Html Checker (HTML5)
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          css: true
