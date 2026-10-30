@@ -1,0 +1,28 @@
+# ==============================================================================
+# CODEOWNERS — La Ciacola di Feltre (Classe 5ITA - Sprint 1)
+# Regola Architetturale: Ogni modifica alle pagine di un Feature Team richiede
+# obbligatoriamente l'approvazione (Pull Request Review) dello Scrum Master
+# responsabile di quel Team prima di poter essere unita sul branch `main`.
+# ==============================================================================
+
+# Protezione infrastruttura e documentazione docente (solo Docente CTO)
+/.github/                  @makiumjs
+/docs/                     @makiumjs
+/README.md                 @makiumjs
+/CONTRIBUTING.md           @makiumjs
+
+# Feature Team 1 — Storia, Borgo Medievale e Mura Veneziane (Scrum Master: Di Dato)
+/storia.html               @lorenzodidato-a11y
+
+# Feature Team 2 — Musei, Galleria Rizzarda e Teatro (Scrum Master: Corso)
+/musei.html                @orsoCorso
+
+# Feature Team 3 — Eventi, Palio di Feltre e Tradizioni (Scrum Master: Pizzolon)
+/eventi.html               @albertopizzolon-roma
+
+# Feature Team 4 — Mobilità, Parcheggi e Servizi (Scrum Master: Facchin)
+/mobilita.html             @WorseThanEpstine
+
+# Hub Comune e Foglio di Stile Condiviso (Coordinamento Scrum Master)
+/index.html                @lorenzodidato-a11y @orsoCorso @albertopizzolon-roma @WorseThanEpstine
+/css/                      @lorenzodidato-a11y @orsoCorso @albertopizzolon-roma @WorseThanEpstine
