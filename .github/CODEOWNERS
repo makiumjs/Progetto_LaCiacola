@@ -13,15 +13,19 @@
 
 # Feature Team 1 — Storia, Borgo Medievale e Mura Veneziane (Scrum Master: Di Dato)
 /storia.html               @lorenzodidato-a11y
+/docs/*team1*              @lorenzodidato-a11y
 
 # Feature Team 2 — Musei, Galleria Rizzarda e Teatro (Scrum Master: Corso)
 /musei.html                @orsoCorso
+/docs/*team2*              @orsoCorso
 
 # Feature Team 3 — Eventi, Palio di Feltre e Tradizioni (Scrum Master: Pizzolon)
 /eventi.html               @albertopizzolon-roma
+/docs/*team3*              @albertopizzolon-roma
 
 # Feature Team 4 — Mobilità, Parcheggi e Servizi (Scrum Master: Facchin)
 /mobilita.html             @WorseThanEpstine
+/docs/*team4*              @WorseThanEpstine
 
 # Hub Comune e Foglio di Stile Condiviso (Coordinamento Scrum Master)
 /index.html                @lorenzodidato-a11y @orsoCorso @albertopizzolon-roma @WorseThanEpstine
