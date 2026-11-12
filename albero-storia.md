@@ -1,0 +1,47 @@
+# Albero semantico di storia.html 
+
+- `body`
+  - `a.salto-contenuto[href="#contenuto-principale"]` ("Salta al contenuto principale")
+  - `header`
+    - `p` (La Ciacola di Feltre - Team 1 Storia)
+    - `h1` (unico h1: "Storia, Borgo Medievale e Mura Antiche di Feltre")
+    - `nav[aria-label="Navigazione principale"]` > `ul` > 5 `li` (`a[aria-current="page"]` su `storia.html`)
+  - `main#contenuto-principale`
+    - `section[aria-labelledby="sezione-storia"]`
+      - `h2#sezione-storia` ("La storia di Feltre")
+      - `figure` > `img[src="img/panorama-cittadella-feltre.jpg"][alt="..."][width="800"][height="450"]` + `figcaption`
+      - `article` > `h3` ("Le origini romane di Feltre") + 5 `p` (con `<em>`: *Feltria*, *municipium*, *ipocausto*, *schola*, *dendrophori*, *fabri*, *centonarii*)
+      - `article` > `h3` ("La Feltre paleocristiana e altomedievale") + 3 `p` (edificio VIII-IX sec., battistero circolare XI-XII sec., centro religioso sopra la città romana)
+      - `article` > `h3` ("Le vicende politiche della Feltre medievale") + 3 `p` con `<time datetime="1324">`, `<time datetime="1355">`, `<time datetime="1404">`
+      - `article` > `h3` ("La guerra della Lega di Cambrai e la distruzione del 1510") + 4 `p` con `<time datetime="1509">`, `<time datetime="1510">`
+    - `section[aria-labelledby="sezione-luoghi"]`
+      - `h2#sezione-luoghi` ("I luoghi simbolo della Cittadella")
+      - `figure` > `img[src="img/mura-veneziane-feltre.jpg"][alt="..."][width="800"][height="450"]` + `figcaption`
+      - `article` > `h3` ("Piazza Maggiore e la sua evoluzione urbanistica") + 3 `p` con `<time datetime="1510">`, `<time datetime="1868">` (Giuseppe Segusini)
+      - `article` > `h3` ("Le Fontane e il patrimonio artistico") + 2 `p` (Fontane Lombardesche, Tullio Lombardo, facciate affrescate)
+      - `article` > `h3` ("La Torre dell'Orologio") + 4 `p` con `<time datetime="1406">`, `<time datetime="1510">`, `<time datetime="1518">`, `<time datetime="1533">` e `<em>` *Finestra del Tempo*
+      - `article` > `h3` ("Porta Imperiale") + 1 `p` con `<time datetime="1355">`
+      - `article` > `h3` ("Porta Oria") + 1 `p`
+      - `article` > `h3` ("Porta Pusterla") + 2 `p` (Dionisio da Urbino)
+    - `section[aria-labelledby="sezione-cronologia"]`
+      - `h2#sezione-cronologia` ("Cronologia storica")
+      - `table`
+        - `caption` ("Le date principali della storia di Feltre")
+        - `thead` > `tr` > 2 `th[scope="col"]` (Anno / Epoca, Evento)
+        - `tbody` > 10 `tr` (ciascuna con `th[scope="row"]` + 1 `td`)
+          - VIII-IX secolo | edificio legato alla prima sede episcopale, area archeologica di Piazza Duomo
+          - XI secolo | prime testimonianze documentarie del Castello di Alboino
+          - Fine XI-XII secolo | battistero circolare nell'area archeologica
+          - `<time datetime="1324">` | scudo lapideo della Torre dell'Orologio, dominio scaligero
+          - `<time datetime="1355">` | passaggio di Carlo IV da Porta Imperiale
+          - `<time datetime="1406">` | restauro della Torre dell'Orologio (podestà Francesco Foscari)
+          - `<time datetime="1510">` | distruzione e incendio di Feltre (Lega di Cambrai)
+          - `<time datetime="1518">` | decorazione della Torre attribuita a Lorenzo Luzzo
+          - `<time datetime="1533">` | la Torre cessa di essere residenza del rettore
+          - `<time datetime="1868">` | intervento di Giuseppe Segusini in Piazza Maggiore
+    - `aside[aria-labelledby="aside-fonti"]`
+      - `h2#aside-fonti` ("Fonti per approfondire")
+      - `ul` > 8 `li` > `a` (Comune di Feltre x2, Ministero della Cultura, Soprintendenza, Il Fondaco per Feltre x2, FAI, Catalogo Generale dei Beni Culturali)
+  - `footer`
+    - `address` (nomi del Team 1, Feltre (BL))
+    - `p` (copyright con `<time datetime="2026">`)
