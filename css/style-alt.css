@@ -1,0 +1,347 @@
+/* ==========================================================================
+   STILE ALTERNATIVO "NOTTE VENEZIANA" — La Ciacola di Feltre
+   Funziona con lo stesso musei.html (zero div / zero span).
+   Colori: blu notte, crema, terracotta, oro.
+   ========================================================================== */
+
+/* 1. VARIABILI: i colori e le misure si cambiano qui, in un punto solo */
+:root {
+  --blu: #1d2b53;
+  --blu-scuro: #121b36;
+  --terracotta: #9c3d1d;
+  --oro: #f2c14e;
+  --crema: #fbf7f0;
+  --bianco: #ffffff;
+  --azzurro-chiaro: #e8edf7;
+  --testo: #222222;
+  --testo-morbido: #4a4a4a;
+  --bordo: #d9d2c5;
+
+  --font-titoli: Georgia, "Times New Roman", serif;
+  --font-corpo: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --raggio: 0.75rem;
+  --larghezza-max: 70rem;
+  --ombra: 0 3px 10px rgba(18, 27, 54, 0.12);
+}
+
+/* 2. RESET: toglie i margini automatici del browser */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-corpo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--testo);
+  background-color: var(--crema);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 3. ACCESSIBILITÀ: contorno visibile quando si naviga con la tastiera */
+:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 3px;
+}
+
+header :focus-visible,
+footer :focus-visible {
+  outline-color: var(--oro);
+}
+
+.salto-contenuto {
+  position: absolute;
+  top: -10rem;
+  left: 1rem;
+  background-color: var(--oro);
+  color: #000000;
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--raggio) var(--raggio);
+}
+
+.salto-contenuto:focus {
+  top: 0;
+}
+
+/* 4. INTESTAZIONE E MENU */
+body > header {
+  background-color: var(--blu-scuro);
+  color: var(--bianco);
+  border-bottom: 5px solid var(--oro);
+  padding: 1.5rem 1.25rem 0;
+}
+
+body > header > * {
+  max-width: var(--larghezza-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body > header > p:first-of-type {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oro);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+body > header > h1 {
+  font-family: var(--font-titoli);
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+body > header > h1 + p {
+  color: #dfe5f5;
+  margin-bottom: 1.25rem;
+}
+
+nav[aria-label="Navigazione principale"] {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+nav[aria-label="Navigazione principale"] > ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+}
+
+nav[aria-label="Navigazione principale"] a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  color: var(--bianco);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+nav[aria-label="Navigazione principale"] a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+nav[aria-label="Navigazione principale"] a[aria-current="page"] {
+  background-color: var(--oro);
+  color: var(--blu-scuro);
+  border-color: var(--oro);
+}
+
+/* 5. CORPO DELLA PAGINA */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--larghezza-max);
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+section > h2 {
+  grid-column: 1 / -1;
+  font-family: var(--font-titoli);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--blu);
+  padding-bottom: 0.5rem;
+  border-bottom: 3px double var(--terracotta);
+}
+
+section > p {
+  grid-column: 1 / -1;
+  color: var(--testo-morbido);
+  max-width: 70ch;
+}
+
+/* 6. LE SCHEDE DEI MUSEI (article) */
+article {
+  background-color: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-left: 6px solid var(--terracotta);
+  border-radius: var(--raggio);
+  padding: 1.25rem;
+  box-shadow: var(--ombra);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+article h3 {
+  font-family: var(--font-titoli);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--blu);
+}
+
+article ul {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+article strong {
+  color: var(--terracotta);
+}
+
+/* 7. IMMAGINI */
+figure {
+  background-color: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  overflow: hidden;
+}
+
+section > figure {
+  grid-column: 1 / -1;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 22rem;
+  object-fit: cover;
+}
+
+article figure img {
+  max-height: 14rem;
+}
+
+figcaption {
+  padding: 0.5rem 0.875rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--testo-morbido);
+  background-color: var(--azzurro-chiaro);
+}
+
+/* 8. INDIRIZZO E LINK */
+address {
+  font-style: normal;
+  background-color: var(--azzurro-chiaro);
+  border-radius: var(--raggio);
+  padding: 0.875rem 1rem;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--terracotta);
+  font-weight: 600;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--blu);
+}
+
+/* 9. RIQUADRO BIGLIETTERIA (aside) */
+aside {
+  background-color: var(--azzurro-chiaro);
+  border: 2px dashed var(--blu);
+  border-radius: var(--raggio);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+aside h2 {
+  font-family: var(--font-titoli);
+  font-size: 1.5rem;
+  color: var(--blu);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+  background-color: var(--bianco);
+  border-radius: var(--raggio);
+  padding: 1rem;
+}
+
+dt {
+  font-weight: 700;
+  color: var(--blu);
+}
+
+dd {
+  margin-bottom: 0.75rem;
+  color: var(--testo-morbido);
+}
+
+/* 10. PIÈ DI PAGINA */
+body > footer {
+  background-color: var(--blu-scuro);
+  color: var(--bianco);
+  border-top: 5px solid var(--oro);
+  padding: 2rem 1.25rem;
+}
+
+body > footer > * {
+  max-width: var(--larghezza-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body > footer address {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--bianco);
+  margin-bottom: 1rem;
+}
+
+body > footer a {
+  color: var(--oro);
+}
+
+body > footer p {
+  font-size: 0.9rem;
+  color: #dfe5f5;
+}
+
+/* 11. SCHERMI GRANDI (tablet e computer) */
+@media (min-width: 48rem) {
+  section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  dl {
+    grid-template-columns: minmax(10rem, 16rem) 1fr;
+    align-items: baseline;
+  }
+
+  dd {
+    margin-bottom: 0;
+  }
+}
